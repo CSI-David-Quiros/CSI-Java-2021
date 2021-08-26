@@ -174,6 +174,7 @@ What is the difference between Git and GitHub?
 
  - Answer:
 
+
 What is the difference between a git commit and a git push?
 
  - Answer:
