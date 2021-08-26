@@ -148,28 +148,29 @@ System.out.println("concatenation: " + arr[0] + arr[1] + i);
 
 What is the diference between a Java object and a primitive data type? 
 
- - Answer:
+ - Answer: Java object uses multiple blocks of memory and primitive data types only use one
 
 Describe what an array is in your own words.
 
- - Answer:
+ - Answer: An array is a list of a certain data. It indicates that it starts at 0.
 
 How do you address an index in an array? Write a code that assigns 34 to a new variable by accessing the value stored in:  
-        int[] arr = {4, 3, -1, 4, 34};
+        
 
- - Answer:
+ - Answer:Int[] myArray = {4, 3, -1, 4, 34};
+        Int t = myArray[8];
 
 What is the first index of a list? Why?
 
- - Answer:
+ - Answer: The first index is always 0. Each index represents how far they are from the first.
 
 Provide an original example of a null value. It must prove your understanding of the concept.
 
- - Answer:
+ - Answer: object t = null;
 
 What part of this instructions was incomplete or unclear?
 
- - Answer:
+ - Answer: None
 
 Type down any class notes below this sentence:
 

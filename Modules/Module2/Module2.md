@@ -160,18 +160,18 @@
 What is a benefit of using Markdown?
 https://www.markdownguide.org/getting-started/
 
- - Answer:
+ - Answer: Markdown is portable in the cloud and can be used for books, documents, e-mails and more. 
 
 What is a java class and what is a java package?
 
- - Answer:
+ - Answer: A java package organizes the java class. The java class can access each package.
 
 Add some cool original code into HelloWorld.py! Impress me.
 
 
 What part of the instructions was incomplete or unclear?
 
- - Answer:
+ - Answer: none
 
 Type down any class notes below this sentence:
 
