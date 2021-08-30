@@ -206,11 +206,12 @@ it should have all animal class definitions defined above. It's main must constr
 
 Include the Link(s) you used to attain information for your selected animal.
 
- - Answer:
+ - Answer: https://denverzoo.org/animals/aye-aye/#:~:text=Young%20are%20weaned%20at%20about,lived%2023%20years%20in%20captivity.
+ https://en.wikipedia.org/wiki/Goldfish
 
 What part of the instructions was incomplete or unclear?
 
- - Answer:
+ - Answer: no
 
 Type down any class notes below this sentence:
 
