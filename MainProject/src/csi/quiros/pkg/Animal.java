@@ -102,7 +102,7 @@ public class Animal {
 	    	System.out.println();
 	    	System.out.println(a3);
 	    }
-	    
+	 
 	    
 
     }

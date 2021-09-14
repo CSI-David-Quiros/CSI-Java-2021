@@ -151,9 +151,11 @@ public static void main(String[] args){
 
 ### Add a Main method to Animal.java.`(2pts)`
 * Select or Discover an exotic animal subspecies. Using **Google** may help. Look up it's scientific name and age range. Initialize it the way i did with the Coqui.
+  * Define the values for all class fields using setter methods.
 * [If you struggle with creativity or intrigue, a random generator may help!](https://www.randomlists.com/random-animals)
 * Wikipedia usually displays an animal's Scientific name.
 * I googled "Coqui life expectancy"
+
 
 <br>
 
@@ -191,6 +193,70 @@ Animal a2 = new Animal("Dog",3);
 * `a2` should not use setter methods.
 * Use a common house pet for `a2` values.
 
+<<<<<<< HEAD
+=======
+<br>
+
+## Nest an Object `(20pts)`
+* Create a new class it in the same package `Animal`.
+* Name it `Taxonomy`
+* Declare it's variables to be [the 8 Major Taxonomic ranks](https://en.wikipedia.org/wiki/Taxonomic_rank)
+* Add Getters and Setters using the naming and capitalization conventions you've seen so far.
+  * Notice how `class` does not work. This is because it's a `reserved keyword`. 
+  * You will need to use a variation of the word for the field name.
+  * The Latin classis, for example.
+* Declare a constructor with all 8 parameters.
+* Declare a no-parameter constructor.
+* Add `Taxonomy` as a field of `Animal`
+  * `Taxonomy` is the data type.
+  * taxonomy is the variable name.
+* Create another constructor within `Animal` that accepts a `Taxonomy` Object as a Parameter.
+* Construct a new taxonomy object within your `Animal` class.
+  * It should go at the end of your `main` method, after your `a2` animal. 
+  * You may reuse an animal from the previous steps, or discover a new one.
+* Create an `Animal` using this taxonomy object as a parameter. Assign it to `a3`
+* Print at least 3 of its taxonomic ranks by using getter methods.
+
+[WhAt Is NEstInG?](https://www.bbc.co.uk/bitesize/guides/znh6pbk/revision/7)
+
+<br>
+
+## To String
+In order to print an object to console, you must define what is to be printed. This is done by creating a function called toString(). When printing an object reference, your Java compiler will automatically call this function.
+
+### [Write a toString() method for your <u>Animal</u> and <u>Taxonomy</u> Classes.](https://www.javatpoint.com/understanding-toString()-method)`(10pts)`
+* Use a [Multiline String](https://www.baeldung.com/java-multiline-string), As a parameter for a [String.format()](https://www.javatpoint.com/java-string-format).
+* Print all class fields 
+
+Here is an incomplete example of the `Animal` toString() function. 
+```java
+    public String toString() {
+    	String s = String.format("""
+    			Name: %s
+    			Age: %d
+    			Taxonomy: %s
+    			""", 
+    			name,
+    			age,
+    			taxonomy);
+    	return s;	
+    }
+```
+
+<br>
+>>>>>>> 2b7ecd09de5f587b22b3f1269afc6515a8be8d13
+
+### Create an Animal Array. `(10 pts)`
+* Create a new class named `AnimalFarm`
+* Add a field called `animals`. It should be a `List` of type `Animal`
+* Add a main method to your animal farm.
+* Within your main method, initialize your array with a capacity of 5 animals. 
+* Populate your animal farm with the `Animals`
+  *  Ony create 4 animals. Leave the last index of the array empty(`null`)
+  * Your may reuse the animals constructed in the previous step.
+  *  They must all be created using constructors (no setter methods) 
+  *  All animals must be constructed in a single line.
+  *  All animals must have all fields populated and a taxonomy.
 
 ### Commit and push all of the project files and the image before the next lecture.
 it should have all animal class definitions defined above. It's main must construct 2 separate Animals and print their variables.
