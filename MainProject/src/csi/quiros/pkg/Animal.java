@@ -53,7 +53,7 @@ public class Animal {
 	        
 	        
 	    public String toString() {
-	    		String tomas = String.format("Name: %s \n age: %s \n scientificName: %s \n Taxonomy: %s ",name,age,scientificName,taxonomy);
+	    		String tomas = String.format("Name: %s \n age: %s \n scientificName: %s \n Taxonomy: %s \n ",name,age,scientificName,taxonomy);
 	    				
 	    									
 	    			return tomas;
