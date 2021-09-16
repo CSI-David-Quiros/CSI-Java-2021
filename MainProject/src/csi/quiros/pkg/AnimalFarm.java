@@ -16,8 +16,8 @@ public class AnimalFarm {
 		animals[4] = new Animal();
 		animals[5] = new Animal("Dwarf Lemur", 19, "Cheirogaleus");
 		animals[6] = new Animal("Japanese white crucian carp", 3, "Carassius cuvieri", new Taxonomy());
-		printAnimals();
-
+		//printAnimals();
+		printEachAnimal();
 	}
 
 	public static void printAnimals() {
@@ -26,6 +26,19 @@ public class AnimalFarm {
 			System.out.println(animals[i]);
 			
 		}
-
+		
 	}
+	public static void printEachAnimal() {
+		for(Animal a : animals){
+			  System.out.println(a);
+			}
+		
+		
+		
+	}
+
+		
 }
+		
+
+
