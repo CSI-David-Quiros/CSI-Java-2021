@@ -1,5 +1,7 @@
 package csi.quiros.pkg;
 
+import java.util.Arrays;
+
 public class EvenOdd2D {
 
 
@@ -8,15 +10,24 @@ public class EvenOdd2D {
 
 			for(int i = 0; i < arr.length; i++) {
 			    for(int j = 0; j < arr[i].length; j++) {
+			    	
+			    	if(i % 2 == 1) {
+			    		if(j % 2 == 1) {
+			    			arr[i][j]= 1 ;
+			    		}
 			    }
-			    System.out.println(arr[i]);
-			    evenOddPrint(arr);
+			    	else {
+			    		if(j % 2 == 0) {
+			    			arr[i][j] = 1;
+			    		}
+			    	}
 			}
+			    System.out.println(Arrays.toString(arr[i]));
 		}
-			public static void evenOddPrint(int[][] arr) {
+		
 		
 	}
 
 
-NoEntinedo;
+
 }
