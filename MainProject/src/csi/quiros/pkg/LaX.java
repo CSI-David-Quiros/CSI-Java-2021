@@ -10,7 +10,7 @@ public class LaX {
 		for(int i = 0; i < arr.length; i++) {
 		    for(int j = 0; j < arr[i].length; j++) {    	
 		    	arr[i][i] = 1;
-		    	arr[i][arr[j].length - i - 1] = 1;
+		    	arr[i][arr[i].length - i - 1] = 1;
 		    
 		    
 		   	}
