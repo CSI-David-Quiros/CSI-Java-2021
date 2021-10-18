@@ -39,7 +39,8 @@ public class PiedraPapelTijera {
 	else if(computerChoice == choices[2] && userChoice == choices[0]) {
 		System.out.println("You Win!");
 	}
-
+	
+	
 	
 	}
 }
