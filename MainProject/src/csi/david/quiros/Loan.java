@@ -41,7 +41,7 @@ public class Loan {
            return getMonthlyPayment();
 
     }
-
+//get total balance
 
 
     public double getBalance() {

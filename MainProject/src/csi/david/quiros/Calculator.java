@@ -11,7 +11,7 @@ public class Calculator {
 
  
 
-              System.out.println("You have been spared by someone who gave you: " + amount);
+              System.out.println("You have been given " + amount);
 
               return amount;
 
@@ -52,8 +52,9 @@ public class Calculator {
  
 
 // formative years
-
+//using my dads car
                      if (age <= 18) {
+                    	 String location = "PR";
 
                            double salary = 0;
 
@@ -62,6 +63,7 @@ public class Calculator {
  
 
                      } else if (age <= 24) {
+ // college years in Purdue
 
                            String location = "IN";
 
@@ -88,7 +90,7 @@ public class Calculator {
 
                      }
 
- 
+ //Living life In MA
 
                      else if (age <= 28) {
 
@@ -122,9 +124,9 @@ public class Calculator {
 
                      else if (age <= 32) {
 
-                           String Location = "Oklahoma";
+                           String Location = "MA";
 
-                           double salary = 116_140 * 0.9;
+                           double salary = 134_700 * 0.9;
 
                            double food = 80 * 365;
 
@@ -144,9 +146,9 @@ public class Calculator {
 
                      else if (age <= 36) {
 
-                           String Location = "";
+                           String Location = "MA";
 
-                           double salary = 134_575 * 0.9;
+                           double salary = 167_080 * 0.9;
 
                            double food = 80 * 365;
 
@@ -170,7 +172,7 @@ public class Calculator {
 
                            String Location = "MA";
 
-                           double salary = 167_080 * 0.9;
+                           double salary = 198_020 * 0.9;
 
                            double food = 80 * 365;
 
@@ -211,7 +213,7 @@ public class Calculator {
  
 
                      if (age == 24 && cash >= 15_000) {
-
+// used car
                            double usedCarPrice = 10_000;
 
                            cash -= usedCarPrice;
@@ -253,8 +255,8 @@ public class Calculator {
       
 
                      if (age == 35 && cash > 220_000) {
-
-                           double housePrice = 80_000;
+//House in MA
+                           double housePrice = 110_000;
 
                            double downPayment = housePrice * 0.15;
 
