@@ -46,7 +46,8 @@ At least 300 points.
 * [Java Class Structure](/../../tree/main/Modules/Module4/Module4.md)
 * [If Statement and Logic operators](/../../tree/main/Modules/Module5/Module5.md)
 * [Arrays and Iteration](/../../tree/main/Modules/Module6/Module6.md)
-* Arithmetic and unary operators
+* [Unary Mathematics](/../../tree/main/Modules/Module7/Module7.md)
+* [Boolean Algebra](/../../tree/main/Modules/Module8/Module8.md)
 * Inheritance and Overloading
 * Abstract classes and Interfaces
 * Polymorphism
@@ -55,5 +56,6 @@ At least 300 points.
 * [ASCII-Art](/../../tree/main/Projects/ASCII-Art/ASCII-Art.md)
 * [DNA](/../../tree/main/Projects/DNA/DNA.md)
 * [Program-Your-Life](/../../tree/main/Projects/Program-Your-Life/Program-Your-Life.md)
+* [Snake](/../../tree/main/Projects/Snake/Snake.md)
 * Conway's game of life
 * Taxonomic data
