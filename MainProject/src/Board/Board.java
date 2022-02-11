@@ -1,5 +1,5 @@
-
 package Board;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,243 +11,428 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Random;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.JButton;
 
+	import java.awt.Color;
+	import java.awt.Dimension;
+	import java.awt.Font;
+	import java.awt.FontMetrics;
+	import java.awt.Graphics;
+	import java.awt.Image;
+	import java.awt.Toolkit;
+	import java.awt.event.ActionEvent;
+	import java.awt.event.ActionListener;
+	import java.awt.event.KeyAdapter;
+	import java.awt.event.KeyEvent;
+	import java.util.Random;
+
+	import javax.swing.ImageIcon;
+	import javax.swing.JPanel;
+	import javax.swing.Timer;
+	import javax.swing.JButton;
 
 	public class Board extends JPanel implements ActionListener {
 
-	    private final int B_WIDTH = 1000;
-	    private final int B_HEIGHT = 1000;
-	    private final int DOT_SIZE = 50;
-	    private final int ALL_DOTS = 50;
-	    private final int RAND_POS = 29;
-	    private final int DELAY = 140;
+		private final int B_WIDTH = 1000;
+		private final int B_HEIGHT = 800;
+		private final int DOT_SIZE = 50;
+		private final int ALL_DOTS = 50;
+		private final int RAND_POS = 10;
+		private final int DELAY = 120;
 
-	    private final int x[] = new int[ALL_DOTS];
-	    private final int y[] = new int[ALL_DOTS];
+		private final int x[] = new int[ALL_DOTS];
+		private final int y[] = new int[ALL_DOTS];
 
-	    private int dots;
-	    private int apple_x;
-	    private int apple_y;
+		private int dots;
+		private int apple_x;
+		private int apple_y;
+		private int mine_x;
+	    private int mine_y;
 
-	    private boolean leftDirection = false;
-	    private boolean rightDirection = true;
-	    private boolean upDirection = false;
-	    private boolean downDirection = false;
-	    private boolean inGame = true;
+		private int score = 0;
 
-	    private Timer timer;
-	    private Image ball;
-	    private Image apple;
-	    private Image head;
+		private boolean leftDirection = false;
+		private boolean rightDirection = true;
+		private boolean upDirection = false;
+		private boolean downDirection = false;
+		private boolean inGame = false;
+		private boolean inStart = true;
 
-	    public Board() {
-	        
-	        initBoard();
-	    }
-	    
-	    private void initBoard() {
+		private Image background;
+		private Timer timer;
+		private Image ball;
+		private Image apple;
+		private Image head;
+		private Image mine;
+		public Board() {
 
-	        addKeyListener(new TAdapter());
-	        setBackground(Color.black);
-	        setFocusable(true);
+			initScreen();
+		}
 
-	        setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
-	        loadImages();
-	        initGame();
-	    }
+		private void initScreen() {
 
-	    private void loadImages() {
+			addKeyListener(new TAdapter());
+			setBackground(new Color(0, 0, 0));
+			setFocusable(true);
 
-	        ImageIcon iid = new ImageIcon("src/resources/dot50.png");
-	        ball = iid.getImage();
+			setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 
-	        ImageIcon iia = new ImageIcon("src/resources/apple50.png");
-	        apple = iia.getImage();
+			initBoard();
 
-	        ImageIcon iih = new ImageIcon("src/resources/head50.png");
-	        head = iih.getImage();
-	    }
+		}
 
-	    private void initGame() {
+		private void initBoard() {
 
-	        dots = 3;
+			addKeyListener(new TAdapter());
+//			setBackground(new Color(0, 0, 0));
+			setFocusable(true);
 
-	        for (int z = 0; z < dots; z++) {
-	            x[z] = 50 - z * 10;
-	            y[z] = 50;
-	        }
-	        
-	        locateApple();
+			setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+			initGame();
+		}
 
-	        timer = new Timer(DELAY, this);
-	        timer.start();
-	    }
+		private void loadImages() {
+			
+			
+			ImageIcon iid = new ImageIcon("src/resources/dot50.png");
+			ball = iid.getImage();
 
-	    @Override
-	    public void paintComponent(Graphics g) {
-	        super.paintComponent(g);
+			ImageIcon iia = new ImageIcon("src/resources/apple50.png");
+			apple = iia.getImage();
 
-	        doDrawing(g);
-	    }
-	    
-	    private void doDrawing(Graphics g) {
-	        
-	        if (inGame) {
+			ImageIcon iih = new ImageIcon("src/resources/head50.png");
+			head = iih.getImage();
 
-	            g.drawImage(apple, apple_x, apple_y, this);
+			ImageIcon iig = new ImageIcon("src/resources/background.png");
+			background = iig.getImage();
+			
+			 ImageIcon iim = new ImageIcon("src/resources/yellowcard.png");
+		     mine= iim.getImage();
+			
+		}
 
-	            for (int z = 0; z < dots; z++) {
-	                if (z == 0) {
-	                    g.drawImage(head, x[z], y[z], this);
-	                } else {
-	                    g.drawImage(ball, x[z], y[z], this);
-	                }
-	            }
+		private void initGame() {
 
-	            Toolkit.getDefaultToolkit().sync();
+			dots = 3;
 
-	        } else {
+			for (int z = 0; z < dots; z++) {
+				x[z] = 50 - z * 10;
+				y[z] = 50;
+			}
+		
+			locateMine();		
+			locateApple();
 
-	            gameOver(g);
-	        }        
-	    }
+			timer = new Timer(DELAY, this);
+			timer.start();
+		}
 
-	    private void gameOver(Graphics g) {
-	        
-	        String msg = "Game Over";
-	        Font small = new Font("Helvetica", Font.BOLD, 14);
-	        FontMetrics metr = getFontMetrics(small);
+		@Override
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
 
-	        g.setColor(Color.white);
-	        g.setFont(small);
-	        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
-	    }
+			doDrawing(g);
+		}
 
-	    private void checkApple() {
+		private void doDrawing(Graphics g) {
+			
+			
+			if (inStart) {
 
-	        if ((x[0] == apple_x) && (y[0] == apple_y)) {
+				String msg = "Press '1' to commence!";
+				Font title = new Font("Algerian", Font.ITALIC, 85);
+				FontMetrics metr = getFontMetrics(title);
 
-	            dots++;
-	            locateApple();
-	        }
-	    }
+				g.setColor(Color.WHITE);
+				g.setFont(title);
+				g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
 
-	    private void move() {
+				String msg1 = "1!";
+				Font small = new Font("Algerian", Font.ITALIC, 80);
+				FontMetrics metr1 = getFontMetrics(small);
 
-	        for (int z = dots; z > 0; z--) {
-	            x[z] = x[(z - 1)];
-	            y[z] = y[(z - 1)];
-	        }
+				g.setColor(Color.WHITE);
+				g.setFont(small);
+				g.drawString(msg1, (B_WIDTH - metr1.stringWidth(msg1)) / 10 / 10, B_HEIGHT / 1 / 5);
+				String msg2 = "";
+				Font title2 = new Font("Algerian", Font.ITALIC, 80);
+				FontMetrics metr2 = getFontMetrics(title);
 
-	        if (leftDirection) {
-	            x[0] -= DOT_SIZE;
-	        }
+				g.setColor(Color.WHITE);
+				g.setFont(title2);
+				g.drawString(msg2, (B_WIDTH - metr.stringWidth(msg2)) / 1 / 5, B_HEIGHT / 2);
 
-	        if (rightDirection) {
-	            x[0] += DOT_SIZE;
-	        }
+			}
+			if (inGame) {
+				
+			
+				
+				g.drawImage(background, 0, 0, null);
+				g.drawImage(apple, apple_x, apple_y, this);
+				g.drawImage(mine, mine_x, mine_y, this);
 
-	        if (upDirection) {
-	            y[0] -= DOT_SIZE;
-	        }
+				for (int z = 0; z < dots; z++) {
+					if (z == 0) {
+						g.drawImage(head, x[z], y[z], this);
+					} else {
+						g.drawImage(ball, x[z], y[z], this);
+					}
+				}
+				scoreBoard(g);
 
-	        if (downDirection) {
-	            y[0] += DOT_SIZE;
-	        }
-	    }
+				Toolkit.getDefaultToolkit().sync();
 
-	    private void checkCollision() {
+			} else if (!inStart) {
 
-	        for (int z = dots; z > 0; z--) {
+				gameOver(g);
+			}
+		}
 
-	            if ((z > 4) && (x[0] == x[z]) && (y[0] == y[z])) {
-	                inGame = false;
-	            }
-	        }
+		private void gameOver(Graphics g) {
 
-	        if (y[0] >= B_HEIGHT) {
-	            inGame = false;
-	        }
+			String msg = "Game Over";
+			Font small = new Font("Algerian", Font.ITALIC, 130);
+			FontMetrics metr = getFontMetrics(small);
 
-	        if (y[0] < 0) {
-	            inGame = false;
-	        }
+			Random rand = new Random();
+			int r = rand.nextInt(255);
+			int g1 = rand.nextInt(255);
+			int b = rand.nextInt(255);
 
-	        if (x[0] >= B_WIDTH) {
-	            inGame = false;
-	        }
+			g.setColor(new Color(r, g1, b));
+			g.setFont(small);
+			g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
 
-	        if (x[0] < 0) {
-	            inGame = false;
-	        }
-	        
-	        if (!inGame) {
-	            timer.stop();
-	        }
-	    }
+			if (score < 20) {
 
-	    private void locateApple() {
+				String msg1 = "RED CARD!";
+				Font small1 = new Font("Algerian", Font.ITALIC, 85);
+				FontMetrics metr1 = getFontMetrics(small);
 
-	        int r = (int) (Math.random() * RAND_POS);
-	        apple_x = ((r * DOT_SIZE));
+				Random ran = new Random();
+				int r2 = rand.nextInt(255);
+				int g2 = rand.nextInt(255);
+				int b2 = rand.nextInt(255);
 
-	        r = (int) (Math.random() * RAND_POS);
-	        apple_y = ((r * DOT_SIZE));
-	    }
+				g.setColor(new Color(r2, g2, b2));
+				g.setFont(small1);
+				g.drawString(msg1, (B_WIDTH - metr.stringWidth(msg1)) / 2, B_HEIGHT / 3 / 2 );
 
-	    @Override
-	    public void actionPerformed(ActionEvent e) {
+			} else if (score > 20) {
 
-	        if (inGame) {
+				String msg2 = "SUIIIII!";
+				Font small2 = new Font("Algerian", Font.ITALIC, 130);
+				FontMetrics metr2 = getFontMetrics(small);
 
-	            checkApple();
-	            checkCollision();
-	            move();
-	        }
+				Random rand2 = new Random();
+				int r3 = rand.nextInt(255);
+				int g3 = rand.nextInt(255);
+				int b3 = rand.nextInt(255);
 
-	        repaint();
-	    }
+				g.setColor(new Color(r3, g3, b3));
+				g.setFont(small);
+				g.drawString(msg2, (B_WIDTH - metr.stringWidth(msg2)) / 2, B_HEIGHT / 3 / 2);
+			}
 
-	    private class TAdapter extends KeyAdapter {
+		}
 
-	        @Override
-	        public void keyPressed(KeyEvent e) {
+		private void checkApple() {
 
-	            int key = e.getKeyCode();
+			if ((x[0] == apple_x) && (y[0] == apple_y)) {
 
-	            if ((key == KeyEvent.VK_A) && (!rightDirection)) {
-	                leftDirection = true;
-	                upDirection = false;
-	                downDirection = false;
-	            }
+				dots++;
+				score++;
+				locateApple();
+				locateMine();
 
-	            if ((key == KeyEvent.VK_D) && (!leftDirection)) {
-	                rightDirection = true;
-	                upDirection = false;
-	                downDirection = false;
-	            }
 
-	            if ((key == KeyEvent.VK_W) && (!downDirection)) {
-	                upDirection = true;
-	                rightDirection = false;
-	                leftDirection = false;
-	            }
+				Random rand = new Random();
+				int r = rand.nextInt(255);
+				int g = rand.nextInt(255);
+				int b = rand.nextInt(255);
+				setBackground(new Color(r, g, b));
 
-	            if ((key == KeyEvent.VK_S) && (!upDirection)) {
-	                downDirection = true;
-	                rightDirection = false;
-	                leftDirection = false;
-	            }
-	        }
-	    }
+			}
+		}
+		private void checkMine() {
+			if ((x[0] == mine_x) && (y[0] == mine_y)) {
+
+				dots -= 2;
+				score--;
+				locateMine();
+			}
+		
 	}
+	    
+	    
+		private void scoreBoard(Graphics g) {
+
+			String msgA = "Score: " + score;
+			Font smallA = new Font("Algerian", Font.ITALIC, 20);
+			FontMetrics metrA = getFontMetrics(smallA);
+
+			g.setColor(Color.white);
+			g.setFont(smallA);
+			g.drawString(msgA, (B_WIDTH - metrA.stringWidth(msgA)) / 6, B_HEIGHT / 10);
+
+		}
+
+		public void restart() {
+
+			inGame = true;
+			initGame();
+			score = 0;
+
+			rightDirection = true;
+			upDirection = false;
+			downDirection = false;
+			leftDirection = false;
+
+		}
+
+		private void move() {
+
+			for (int z = dots; z > 0; z--) {
+				x[z] = x[(z - 1)];
+				y[z] = y[(z - 1)];
+			}
+
+			if (leftDirection) {
+				x[0] -= DOT_SIZE;
+			}
+
+			if (rightDirection) {
+				x[0] += DOT_SIZE;
+			}
+
+			if (upDirection) {
+				y[0] -= DOT_SIZE;
+			}
+
+			if (downDirection) {
+				y[0] += DOT_SIZE;
+			}
+		}
+
+		private void checkCollision() {
+
+			for (int z = dots; z > 0; z--) {
+
+				if ((z >= 2) && (x[0] == x[z]) && (y[0] == y[z])) {
+					inGame = false;
+				}
+			}
+
+			if (y[0] >= B_HEIGHT) {
+				inGame = false;
+			}
+
+			if (y[0] < 0) {
+				inGame = false;
+			}
+
+			if (x[0] >= B_WIDTH) {
+				inGame = false;
+			}
+
+			if (x[0] < 0) {
+				inGame = false;
+			}
+
+		}
 
 
+		
+		private void locateApple() {
 
+			int r = (int) (Math.random() * RAND_POS);
+			apple_x = ((r * DOT_SIZE));
 
+			r = (int) (Math.random() * RAND_POS);
+			apple_y = ((r * DOT_SIZE));
+		}
+
+		private void locateMine() {
+
+			int r = (int) (Math.random() * RAND_POS);
+			mine_x = ((r * DOT_SIZE));
+
+			r = (int) (Math.random() * RAND_POS);
+			mine_y = ((r * DOT_SIZE));
+
+		}
+	    
+
+		public void actionPerformed(ActionEvent e) {
+
+			if (inGame) {
+
+				checkApple();
+				checkMine();
+				checkCollision();
+				move();
+			}
+
+			repaint();
+
+			if (dots <= 0) {
+				inGame = false;
+			}
+		}
+
+		private class TAdapter extends KeyAdapter {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+
+				int key = e.getKeyCode();
+
+				if ((key == KeyEvent.VK_S) && (!upDirection)) {
+					downDirection = true;
+					rightDirection = false;
+					leftDirection = false;
+				}
+
+				if ((key == KeyEvent.VK_A) && (!rightDirection)) {
+					leftDirection = true;
+					upDirection = false;
+					downDirection = false;
+				}
+
+				if ((key == KeyEvent.VK_D) && (!leftDirection)) {
+					rightDirection = true;
+					upDirection = false;
+					downDirection = false;
+				}
+
+				if ((key == KeyEvent.VK_W) && (!downDirection)) {
+					upDirection = true;
+					rightDirection = false;
+					leftDirection = false;
+				}
+				if ((key == KeyEvent.VK_ENTER && (!inGame))) {
+					if (!inGame) {
+						timer.stop();
+						restart();
+						inStart = true;
+						inGame = false;
+
+					}
+				}
+
+				if ((key == KeyEvent.VK_1 && (inStart))) {
 	
+					inStart = false;
+					inGame = true;
+					loadImages();
+				}
 
+			}
 
+		}
+	}
