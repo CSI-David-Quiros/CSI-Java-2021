@@ -1,4 +1,4 @@
-package Board;
+package csi.quiros.snake;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
