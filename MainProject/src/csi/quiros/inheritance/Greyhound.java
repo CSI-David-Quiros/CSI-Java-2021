@@ -6,7 +6,7 @@ public class Greyhound extends Dog{
 	public Greyhound() {
 		
 		super("Blue Brindle", 40, false, false, "GreyHound.png");
-		//   20/20 plz
+
 	}
 
 	public Noise bark() {
@@ -26,3 +26,6 @@ public class Greyhound extends Dog{
 		return new Shit(true, 3, "Poopy");
 	}
 }
+
+
+//   20/20 plz

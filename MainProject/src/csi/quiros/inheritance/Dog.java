@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 
 public class Dog extends JPanel{
-	
+	 
 	
 	
 	
@@ -28,7 +28,9 @@ public class Dog extends JPanel{
 		this.size = size;
 		this.wild = wild;
 		this.gender = gender;
-		this.icon = new ImageIcon(getClass().getResource(directory));
+	
+		this.icon = new ImageIcon(new ImageIcon(getClass().getResource(directory)).getImage().getScaledInstance(120, 85,  java.awt.Image.SCALE_SMOOTH));
+
 	}
 	
 	public void piss() {
@@ -117,6 +119,6 @@ public class Dog extends JPanel{
 	
 	public void mate(Dog d) {
 		
-	}
-
+	
+}
 }
