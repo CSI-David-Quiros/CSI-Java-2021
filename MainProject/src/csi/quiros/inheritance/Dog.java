@@ -93,12 +93,15 @@ public class Dog extends JPanel{
 	}
 	
 	public class Food {
-		public Food(String flavor, String color, boolean humanFood) {
-			
+		
+		public Food(String flavor, String color, boolean humanFood, String DogFood) {
+			this.icon = new ImageIcon(new ImageIcon(getClass().getResource(DogFood)).getImage().getScaledInstance(120, 85,  java.awt.Image.SCALE_SMOOTH));
 		}
+		ImageIcon icon;
 		String flavor;
 		String color;
 		boolean humanFood;
+		
 		
 		public Shit digest() {
 			

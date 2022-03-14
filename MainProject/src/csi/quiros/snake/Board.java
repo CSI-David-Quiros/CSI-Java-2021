@@ -99,21 +99,7 @@ import javax.swing.JButton;
 		private void loadImages() {
 			
 			
-//			ImageIcon iid = new ImageIcon("src/resources/dot50.png");
-//			ball = iid.getImage();
-//
-//			ImageIcon iia = new ImageIcon("src/resources/apple50.png");
-//			apple = iia.getImage();
-//
-//			ImageIcon iih = new ImageIcon("src/resources/head50.png");
-//			head = iih.getImage();
-//
-//			ImageIcon iig = new ImageIcon("src/resources/background.png");
-//			background = iig.getImage();
-//			
-//			 ImageIcon iim = new ImageIcon("src/resources/yellowcard.png");
-//		     mine= iim.getImage();
-			
+
 			ImageIcon iid = new ImageIcon( getClass().getResource("dot50.png") );
 			ball = iid.getImage();
 			

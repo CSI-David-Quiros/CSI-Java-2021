@@ -29,7 +29,7 @@ public class DogPound extends JPanel implements ActionListener{
 	
 	private int B_WIDTH = 800;
 	private int B_HEIGHT = 800; 
-	private int DOG_SIZE = 10;
+	private int DOG_SIZE = 25;
 	private int ALL_DOGS = 120;
 	
 	private final int x[] = new int[ALL_DOGS];
