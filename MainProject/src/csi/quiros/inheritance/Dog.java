@@ -2,6 +2,7 @@ package csi.quiros.inheritance;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Point;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -93,14 +94,28 @@ public class Dog extends JPanel{
 	}
 	
 	public class Food {
-		
-		public Food(String flavor, String color, boolean humanFood, String DogFood) {
-			this.icon = new ImageIcon(new ImageIcon(getClass().getResource(DogFood)).getImage().getScaledInstance(120, 85,  java.awt.Image.SCALE_SMOOTH));
-		}
 		ImageIcon icon;
 		String flavor;
 		String color;
 		boolean humanFood;
+		Point point;
+		
+		
+		public Food(String flavor, String color, boolean humanFood, String directory) {
+			
+			this.icon = new ImageIcon(new ImageIcon(getClass().getResource(directory)).getImage().getScaledInstance(120, 85,  java.awt.Image.SCALE_SMOOTH));
+			this.flavor = flavor;
+			this.color = color;
+			this.humanFood = humanFood;
+			
+		}
+		
+		public Food(Point p) {
+			this("Shrimp","Brown",false, "DofFood.png");
+			this.point = p;
+			
+		}
+
 		
 		
 		public Shit digest() {

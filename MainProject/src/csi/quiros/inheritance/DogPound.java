@@ -18,6 +18,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import csi.quiros.inheritance.Dog.Food;
+
 
 
 
@@ -26,6 +28,7 @@ public class DogPound extends JPanel implements ActionListener{
 	
 	List<Dog> dogs1 = new ArrayList<Dog>();
 	List<Dog.Shit> dogshits = new ArrayList<Dog.Shit>();
+	List<Food> dogfood = new ArrayList<Food>();
 	
 	private int B_WIDTH = 800;
 	private int B_HEIGHT = 800; 
@@ -55,6 +58,7 @@ public class DogPound extends JPanel implements ActionListener{
 	  public DogPound() {
 	        dogs1.add(new Greyhound());
 	        initBoard();
+	        
 	    }
 	    
 	   private void initBoard() {
@@ -65,7 +69,7 @@ public class DogPound extends JPanel implements ActionListener{
 
 	        setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 	        initSimulation();
-//	        loadImages();
+
 	        
 	    }
 	   
@@ -82,16 +86,7 @@ public class DogPound extends JPanel implements ActionListener{
 	        timer.start();
 	   }
 	   
-//	   
-//	   public void loadImages() {
-//
-//	        ImageIcon iid = new ImageIcon(getClass().getResource("GermanShepherd.png"));
-//	        shepherd = iid.getImage().getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
-//	        iid = new ImageIcon(shepherd);
-//	        
-//	   }
-//	  
-	   
+
 	   
 	   @Override
 	   public void paintComponent(Graphics g) {
@@ -111,8 +106,6 @@ public class DogPound extends JPanel implements ActionListener{
 	                	g.drawImage(dogs1.get(0).icon.getImage(), x[z], y[z], this);
 	                }
 	            }
-//	            for (int z = 0; z < dogshits.size(); z++) {
-//	                    g.drawImage(dogshits.get(z).icon.getImage(), x[z], y[z], this);
 
 	            }
 		   
@@ -136,20 +129,7 @@ public class DogPound extends JPanel implements ActionListener{
 	    }
 	   
 	    
-//	    public static void main(String[] args) {
-//	    	
-//	    }
-//	   public void randomShit(Dog d, Graphics g) {
-//		   
-//		   Dog.Food f = (new Dog()).new Food();
-//		   Dog.Shit s = d.eat(f);
-//		   dogshits.add(s);
-//		   d.eat(f).icon.getImage();
-//		 
-//		   g.drawImage(s.icon.getImage(), 0, 0, null);
-//		   
-//		   
-//	   }
+
 	   
 	   private void move() {
 
@@ -190,10 +170,7 @@ public class DogPound extends JPanel implements ActionListener{
 		        downDirection = rd.nextBoolean();
 	        }
 	        
-//	        if(count % randomNum1 == 0) {
-//	        	randomShit(dogs1.get(0), getGraphics());
-//	        }
-//	        
+
 	        if(upDirection == false && downDirection == false && leftDirection == false && rightDirection == false) {
 	        	rightDirection = false;
 	        }
@@ -222,7 +199,7 @@ public class DogPound extends JPanel implements ActionListener{
 	    	Random rd = new Random();
 
 	        if (y[0] >= B_HEIGHT) {
-//	            isRunning = false;
+
 	        	upDirection = rd.nextBoolean();
                 rightDirection = rd.nextBoolean();
                 leftDirection = rd.nextBoolean();
@@ -230,7 +207,7 @@ public class DogPound extends JPanel implements ActionListener{
 	        }
 
 	        if (y[0] < 0) {
-//	            isRunning = false;
+	        	
 	        	leftDirection = rd.nextBoolean();
                 upDirection = false;
                 downDirection = rd.nextBoolean();
@@ -238,7 +215,7 @@ public class DogPound extends JPanel implements ActionListener{
 	        }
 
 	        if (x[0] >= B_WIDTH) {
-//	        	isRunning = false;
+
 	        	upDirection = rd.nextBoolean();
                 rightDirection = false;
                 leftDirection = rd.nextBoolean();
@@ -246,7 +223,7 @@ public class DogPound extends JPanel implements ActionListener{
 	        }
 
 	        if (x[0] < 0) {
-//	            isRunning = false;
+
 	        	leftDirection = false;
                 upDirection = rd.nextBoolean();
                 downDirection = rd.nextBoolean();
