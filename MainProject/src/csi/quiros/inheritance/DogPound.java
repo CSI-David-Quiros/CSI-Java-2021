@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -97,39 +98,34 @@ public class DogPound extends JPanel implements ActionListener{
 	   
 	   private void doDrawing(Graphics g) {
 		   
-		   
-
+	
 	            for (int z = 0; z < dogs; z++) {
 	                if (z == 0) {
 	                    g.drawImage(dogs1.get(0).icon.getImage(), x[z], y[z], this);
 	                } else {
 	                	g.drawImage(dogs1.get(0).icon.getImage(), x[z], y[z], this);
 	                }
+	                
 	            }
+	   	     for (int z = 0; z < dogfood.size(); z++) {
 
-	            }
+     			g.drawImage(dogfood.get(z).icon.getImage(), dogfood.get(z).point.x, dogfood.get(z).point.y, this);
+     		}
+
+	   }
+	            
 		   
+	   private void checkFood() {
 
-	   
-	   
-	   
-	   
-	   
-	   private void gameOver(Graphics g) {
-	    	
-		   String msg = "Game Over";
-			Font small = new Font("Algerian", Font.ITALIC, 130);
-			FontMetrics metr = getFontMetrics(small);
-	
-	        g.setColor(Color.white);
-	        g.setFont(small);
-	        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 5, B_HEIGHT / 2);
-	        
-	    
-	    }
-	   
-	    
+			for (int z = 0; z < dogfood.size(); z++) {
 
+				if (dogfood.get(z).point.x == x[0]  &&  dogfood.get(z).point.y == y[0]   ) {
+		
+					
+				}
+
+			}
+		}
 	   
 	   private void move() {
 
@@ -234,14 +230,27 @@ public class DogPound extends JPanel implements ActionListener{
 	            timer.stop();
 	        }
 	    }
-	   
-	   
+	  
+	  
+		private void locateFood() {
+
+			Random rand = new Random();
+			int x = rand.nextInt(B_WIDTH);
+			int y = rand.nextInt(B_HEIGHT);
+			dogfood.add(new Dog() .new Food(new Point(x, y)));
+
+		}
+		
 	   @Override
 	   public void actionPerformed(ActionEvent e) {
 
 	        if (isRunning) {
 	            checkCollision();
 	            move();
+	            checkFood();
+	            if(dogfood.size()<5) {
+	            locateFood();}
+	            
 	        }
 	        repaint();
 	    }

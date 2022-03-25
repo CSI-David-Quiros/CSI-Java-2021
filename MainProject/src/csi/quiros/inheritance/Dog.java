@@ -21,7 +21,9 @@ public class Dog extends JPanel{
 	ImageIcon icon;
 	
 	
-
+	public Dog() {
+		
+	}
 	
 	public Dog(String hair, int size, boolean wild, boolean gender, String directory) {
 		super();
@@ -30,7 +32,7 @@ public class Dog extends JPanel{
 		this.wild = wild;
 		this.gender = gender;
 	
-		this.icon = new ImageIcon(new ImageIcon(getClass().getResource(directory)).getImage().getScaledInstance(120, 85,  java.awt.Image.SCALE_SMOOTH));
+		this.icon = new ImageIcon(new ImageIcon(getClass().getResource(directory)).getImage().getScaledInstance(100, 75,  java.awt.Image.SCALE_SMOOTH));
 
 	}
 	
@@ -102,8 +104,8 @@ public class Dog extends JPanel{
 		
 		
 		public Food(String flavor, String color, boolean humanFood, String directory) {
-			
-			this.icon = new ImageIcon(new ImageIcon(getClass().getResource(directory)).getImage().getScaledInstance(120, 85,  java.awt.Image.SCALE_SMOOTH));
+			super();
+			this.icon = new ImageIcon(new ImageIcon(getClass().getResource(directory)).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
 			this.flavor = flavor;
 			this.color = color;
 			this.humanFood = humanFood;
@@ -111,7 +113,7 @@ public class Dog extends JPanel{
 		}
 		
 		public Food(Point p) {
-			this("Shrimp","Brown",false, "DofFood.png");
+			this("Shrimp","Brown",false, "DogFood.png");
 			this.point = p;
 			
 		}
